@@ -1,13 +1,60 @@
-# EmpowerChain
+## Development
 
-This is where the code for anything related to EmpowerChain is located. Documentation is being built right now.
+### Requirements
 
-In the meantime, take a look at our [whitepaper](https://github.com/EmpowerPlastic/empowerchain/blob/main/Whitepaper.pdf), [website](https://empowerchain.io) and [@empowerchain_io on twitter](https://twitter.com/empowerchain_io).
+- Go 1.19
 
-# ./chain
+### Build
 
-In the chain folder is where the actual blockchain-code is located.
+To run a basic build:
+```shell
+$ make build
+```
 
-# ./docs
+To install the `empowerd` executable:
+```shell
+$ make install
+```
 
-In the docs folder you will find the documentation and doc site for https://docs.empowerchain.io
+### Run locally
+
+To spin up a local chain:
+```shell
+$ make serve
+```
+
+To kill the running instance:
+```shell
+$ make kill-all
+```
+
+### Test
+
+To run unit tests:
+```shell
+$ make test-unit
+```
+
+To run e2e tests (and unit tests):
+```shell
+$ make test
+```
+
+To run a basic smoke test (spins up the chain and runs a couple of commands against it)
+```shell
+$ make smoketest
+```
+
+### Run CI/CD locally
+EmpowerChain is using [Earthly](https://earthly.dev/) heavily for CI/CD. 
+It abstracts away the underlying CI/CD system (such as GitHub actions) and allows you to run the same commands locally using a docker-like environment and set-up.
+
+In short, Earthly is like a combination of Docker and a Makefile.
+
+For instance, to run the tests in almost the same way as the GitHub action, you can run:
+```shell
+$ earthly -P +test
+```
+
+To see more targets, take a look at the Earthfile in this directory.
+
